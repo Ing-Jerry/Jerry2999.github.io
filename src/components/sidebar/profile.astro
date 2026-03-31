@@ -70,8 +70,6 @@ const id = `profile-${side}`;
 
 {umamiEnabled && (
     <script>
-        import "@/plugins/umami-share";
-
         // 客户端统计文案生成函数
         function generateStatsText(pageViews, visitors, i18n_views, i18n_visitors) {
             return `${i18n_views} ${pageViews} · ${i18n_visitors} ${visitors}`;

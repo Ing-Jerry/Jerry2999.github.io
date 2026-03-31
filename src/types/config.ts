@@ -203,15 +203,10 @@ export type WALLPAPER_MODE =
 
 export enum LinkPreset {
     Home = 0,
-    Archive = 1,
     Projects = 2,
     Skills = 3,
     Timeline = 4,
-    Diary = 5,
-    Albums = 6,
-    Anime = 7,
     About = 8,
-    Friends = 9,
 }
 
 
@@ -244,9 +239,6 @@ export type NavbarConfig = {
 export type WidgetComponentType =
     | "profile"
     | "announcement"
-    | "categories"
-    | "tags"
-    | "statistics"
     | "toc"
     | "custom";
 

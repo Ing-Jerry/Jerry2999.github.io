@@ -10,8 +10,6 @@ import type {
     PostConfig,
     FooterConfig,
     ParticleConfig,
-    MusicPlayerConfig,
-    PioConfig,
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 import rawConfig from "../twilight.config.yaml?raw";
@@ -34,23 +32,16 @@ type ConfigFile = {
     post: PostConfig;
     footer: FooterConfig;
     particle: ParticleConfig;
-    musicPlayer: MusicPlayerConfig;
-    pio: PioConfig;
 };
 
 const config = yaml.load(rawConfig) as ConfigFile;
 
 const linkPresetNameMap: Record<string, LinkPreset> = {
     Home: LinkPreset.Home,
-    Archive: LinkPreset.Archive,
     Projects: LinkPreset.Projects,
     Skills: LinkPreset.Skills,
     Timeline: LinkPreset.Timeline,
-    Diary: LinkPreset.Diary,
-    Albums: LinkPreset.Albums,
-    Anime: LinkPreset.Anime,
     About: LinkPreset.About,
-    Friends: LinkPreset.Friends,
 };
 
 const normalizeNavbarLink = (
@@ -119,9 +110,3 @@ export const footerConfig: FooterConfig = config.footer;
 
 // 粒子特效配置
 export const particleConfig: ParticleConfig = config.particle;
-
-// 音乐播放器配置
-export const musicPlayerConfig: MusicPlayerConfig = config.musicPlayer;
-
-// 看板娘配置
-export const pioConfig: PioConfig = config.pio;

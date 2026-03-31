@@ -1,8 +1,5 @@
 import { getResolvedSiteLang } from "@utils/language";
-import { en } from "./languages/en";
 import { es } from "./languages/es";
-import { ja } from "./languages/ja";
-import { zh } from "./languages/zh";
 import type I18nKey from "./i18nKey";
 
 
@@ -13,17 +10,9 @@ export type Translation = {
 const defaultTranslation = es;
 
 const map: { [key: string]: Translation } = {
-    en: en,
-    en_us: en,
-    en_gb: en,
-    en_au: en,
     es: es,
     es_es: es,
     es_mx: es,
-    zh: zh,
-    zh_cn: zh,
-    ja: ja,
-    ja_jp: ja,
 };
 
 export function getTranslation(lang: string): Translation {
