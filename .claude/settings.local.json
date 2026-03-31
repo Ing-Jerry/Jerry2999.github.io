@@ -42,7 +42,8 @@
       "Bash(grep -r \"page-bg\\\\|pageBackground\\\\|--page-bg\" /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/src --include=\"*.ts\" --include=\"*.js\" --include=\"*.css\" 2>/dev/null | head -20)",
       "Bash(ls -la \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\\\\public\\\\assets\\\\images\\\\desktopWallpaper\"* \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\\\\public\\\\assets\\\\images\\\\mobileWallpaper\"* 2>/dev/null)",
       "Bash(find /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io -type f -name \"*.js\" -o -name \"*.ts\" | xargs grep -l \"window.print\\\\|html2pdf\\\\|pdfjs\" 2>/dev/null | head -20)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(ls public/assets/images/avatar*)"
     ]
   }
 }

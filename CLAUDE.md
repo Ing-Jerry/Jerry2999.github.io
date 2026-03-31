@@ -14,7 +14,7 @@
 - **Proyectos** son carpetas en `src/content/projects/` con `intro.json` + imagen opcional
 - **About** es `src/content/about.md` (markdown)
 - **Blog posts** van en `src/content/posts/` (actualmente vacío, blog deshabilitado en nav)
-- **Avatar** está en `public/assets/images/avatar.jpg` — PENDIENTE: reemplazar con foto real de Gerardo
+- **Foto de Gerardo** está en `public/assets/images/IMG_6243.png` (usada en CV y sidebar)
 
 ## Convenciones
 - **Imágenes estáticas** van en `public/assets/images/`
@@ -32,6 +32,8 @@
 - Prefiere WhatsApp como método de contacto principal (wa.me/528441020599)
 - El blog está deshabilitado por ahora — solo necesita un CV/portafolio
 - Instagram y YouTube fueron removidos — no los usa profesionalmente
+- El usuario se frustra con investigaciones largas — ir directo a la solución, no analizar de más
+- El usuario quiere que su CV refleje versatilidad mecatrónica, no solo software
 
 ## Datos del usuario (referencia rápida)
 - **Nombre completo**: Gerardo Alejandro Flores Muñoz
@@ -50,6 +52,10 @@
 - El CV en Word está en la raíz del proyecto: `Gerardo Alejandro Flores Muñoz.docx`
 - La carpeta `Twilight-main/` fue eliminada en la limpieza del 2026-03-26
 - **OneDrive + dist/**: a veces `pnpm build` falla con EPERM en `dist/` por bloqueo de OneDrive — solución: `rm -rf dist` antes de build
+- **OneDrive + pnpm remove**: `pnpm remove` puede fallar con EPERM al renombrar `package.json` — reintentar suele funcionar
+- **html2pdf.js no funciona con Astro scripts**: la librería es UMD/CommonJS y no se puede importar con `import` en `<script>` de Astro. Si se necesita, cargar via CDN con `<script is:inline>`. Actualmente el CV usa `window.print()` en su lugar
+- **cv.astro es standalone**: no usa layouts de Astro (base.astro/grid.astro), tiene su propio HTML completo con estilos scoped. Cambios al wallpaper/banner NO afectan esta página
+- **CI falla si hay archivos eliminados localmente sin commitear**: los plugins/páginas borrados deben commitearse junto con los cambios a `astro.config.mjs` que los referenciaba
 
 ## Decisiones de arquitectura
 - **[2026-03-25] Migración de NeonMint a Twilight**: el usuario no le gustó el diseño de NeonMint. Se migró todo el contenido al template Twilight que tiene más features (skills, timeline, proyectos con JSON, blog integrado, búsqueda, temas)
@@ -59,3 +65,6 @@
 - **[2026-03-26] Index single-page**: todas las secciones (Sobre mí, Proyectos, Skills, Timeline) están en index.astro como secciones con anclas (#sobre-mi, #proyectos, #skills, #timeline). Las páginas separadas (projects.astro, timeline.astro, skills.astro) también existen pero el navbar apunta al index
 - **[2026-03-26] Skills niveles**: criterio del usuario — 2+ años = avanzado, <1 año = intermedio. Tailwind fusionado con HTML & CSS. Se agregaron Astro y C/C++ como skills
 - **[2026-03-26] Categorías de skills en español**: frontend, "Backend & Integraciones", "Herramientas & Datos" (hardcoded en index.astro, no usa i18n)
+- **[2026-03-31] Página CV standalone** (`src/pages/cv.astro`): HTML independiente con estilos scoped, no usa layouts del template. Incluye foto, datos de contacto, experiencia, educación, skills, habilidades profesionales, áreas de interés e idiomas. Botón "Guardar como PDF" usa `window.print()`
+- **[2026-03-31] Perfil profesional ampliado**: el CV ahora se presenta como "Ingeniero Mecatrónico · Software Developer", enfatizando apertura a todas las áreas de mecatrónica (automatización, robótica, IoT, manufactura, etc.), no solo desarrollo web
+- **[2026-03-31] Limpieza de features no usados**: eliminados music player, pio (看板娘), fancybox, albums, anime, diary, friends, categorías, tags, statistics del sidebar, y sus archivos/estilos asociados. Config y types actualizados
