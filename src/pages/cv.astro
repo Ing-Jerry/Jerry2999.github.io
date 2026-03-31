@@ -88,13 +88,12 @@ const siteLang = siteConfig.lang.replace("_", "-");
               media={favicon.theme && `(prefers-color-scheme: ${favicon.theme})`}
         />
     ))}
-    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <!-- Action buttons (hidden in print) -->
     <div class="no-print actions">
         <a href="/" class="btn btn-secondary">← Volver al portafolio</a>
-        <button id="download-pdf-btn" class="btn btn-primary">
+        <button onclick="window.print()" class="btn btn-primary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
@@ -105,8 +104,9 @@ const siteLang = siteConfig.lang.replace("_", "-");
     <div class="cv-container">
         <!-- Header -->
         <header class="cv-header">
+            <img src="/assets/images/IMG_6243.png" alt="Gerardo Flores" class="cv-avatar" />
             <h1>Gerardo Alejandro Flores Muñoz</h1>
-            <p class="title-role">Software Developer</p>
+            <p class="title-role">Ingeniero Mecatrónico · Software Developer</p>
             <div class="contact-row">
                 {email && (
                     <span class="contact-item">
@@ -137,7 +137,7 @@ const siteLang = siteConfig.lang.replace("_", "-");
                     Saltillo, Coahuila, México
                 </span>
             </div>
-            <p class="profile-summary">Software Developer con experiencia en desarrollo web, liderazgo de equipos y optimización de procesos empresariales. Ingeniero Mecatrónico de formación con perspectiva única para resolver problemas combinando software, automatización y pensamiento analítico. Enfocado en resultados medibles, transformando ideas en sistemas funcionales.</p>
+            <p class="profile-summary">Ingeniero Mecatrónico con sólida experiencia en desarrollo de software, liderazgo de equipos y optimización de procesos industriales. Mi formación multidisciplinaria me permite aportar valor en diversas áreas: desarrollo web y de aplicaciones, automatización de procesos, integración de sistemas, análisis de datos, manufactura y control de calidad. Abierto a explorar todas las áreas que la ingeniería mecatrónica abarca — combino pensamiento analítico, habilidades de programación y conocimiento de hardware para adaptarme rápidamente a cualquier entorno técnico y generar resultados medibles.</p>
         </header>
 
         <!-- Experiencia Laboral -->
@@ -224,6 +224,21 @@ const siteLang = siteConfig.lang.replace("_", "-");
             </ul>
         </section>
 
+        <!-- Áreas de Interés -->
+        <section>
+            <h2 class="section-title">Áreas de Interés</h2>
+            <ul class="professional-skills">
+                <li>Desarrollo de software y aplicaciones web</li>
+                <li>Automatización industrial y de procesos</li>
+                <li>Integración de sistemas (software + hardware)</li>
+                <li>Robótica y sistemas embebidos</li>
+                <li>Análisis de datos e inteligencia de negocio</li>
+                <li>Diseño mecánico y manufactura</li>
+                <li>IoT y sistemas de control</li>
+                <li>Gestión de proyectos técnicos</li>
+            </ul>
+        </section>
+
         <!-- Idiomas -->
         <section>
             <h2 class="section-title">Idiomas</h2>
@@ -253,9 +268,8 @@ const siteLang = siteConfig.lang.replace("_", "-");
     body {
         font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
         color: #1a1a1a;
-        background: #f5f5f5;
-        line-height: 1.6;
-        font-size: 15px;
+        line-height: 1.4;
+        font-size: 14px;
     }
 
     a {
@@ -317,39 +331,49 @@ const siteLang = siteConfig.lang.replace("_", "-");
         max-width: 800px;
         margin: 2rem auto;
         background: white;
-        padding: 2.5rem 3rem;
+        padding: 1.5rem 2.5rem;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Avatar */
+    .cv-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 0.5rem;
+        border: 2px solid #0d6e4f;
     }
 
     /* Header */
     .cv-header {
         text-align: center;
-        padding-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
         border-bottom: 2px solid #0d6e4f;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.75rem;
     }
 
     .cv-header h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: 700;
         color: #111;
         letter-spacing: -0.01em;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.1rem;
     }
 
     .title-role {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #0d6e4f;
         font-weight: 500;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.4rem;
     }
 
     .contact-row {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 0.75rem 1.25rem;
-        font-size: 0.85rem;
+        gap: 0.4rem 1rem;
+        font-size: 0.8rem;
         color: #555;
     }
 
@@ -371,32 +395,32 @@ const siteLang = siteConfig.lang.replace("_", "-");
     }
 
     .profile-summary {
-        margin-top: 0.75rem;
-        font-size: 0.9rem;
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
         color: #444;
         text-align: justify;
-        line-height: 1.5;
+        line-height: 1.4;
     }
 
     /* Sections */
     section {
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.75rem;
     }
 
     .section-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         color: #0d6e4f;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        padding-bottom: 0.4rem;
+        padding-bottom: 0.2rem;
         border-bottom: 1px solid #e0e0e0;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.4rem;
     }
 
     /* Timeline entries */
     .timeline-entry {
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.6rem;
     }
 
     .timeline-entry:last-child {
@@ -430,24 +454,24 @@ const siteLang = siteConfig.lang.replace("_", "-");
     }
 
     .entry-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         color: #444;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.2rem;
     }
 
     .achievements {
         list-style: none;
         padding: 0;
-        margin: 0.25rem 0;
+        margin: 0.15rem 0;
     }
 
     .achievements li {
         position: relative;
         padding-left: 1rem;
-        font-size: 0.875rem;
+        font-size: 0.825rem;
         color: #333;
-        line-height: 1.5;
-        margin-bottom: 0.15rem;
+        line-height: 1.4;
+        margin-bottom: 0.05rem;
     }
 
     .achievements li::before {
@@ -459,44 +483,44 @@ const siteLang = siteConfig.lang.replace("_", "-");
     }
 
     .entry-skills {
-        font-size: 0.825rem;
+        font-size: 0.8rem;
         color: #555;
-        margin-top: 0.3rem;
+        margin-top: 0.15rem;
     }
 
     /* Skills */
     .skills-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1rem;
+        gap: 0.5rem;
     }
 
     .skill-cat-title {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 600;
         color: #333;
-        margin-bottom: 0.4rem;
+        margin-bottom: 0.2rem;
     }
 
     .skill-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.3rem;
+        gap: 0.2rem;
     }
 
     .skill-tag {
         display: inline-block;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         background: #f0faf5;
         color: #1a1a1a;
-        padding: 0.15rem 0.5rem;
+        padding: 0.1rem 0.4rem;
         border-radius: 0.25rem;
         border: 1px solid #d1e7dd;
     }
 
     .skill-level {
         color: #666;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     /* Professional skills */
@@ -510,9 +534,9 @@ const siteLang = siteConfig.lang.replace("_", "-");
     .professional-skills li {
         position: relative;
         padding-left: 1rem;
-        font-size: 0.875rem;
+        font-size: 0.825rem;
         color: #333;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.1rem;
         break-inside: avoid;
     }
 
@@ -532,7 +556,7 @@ const siteLang = siteConfig.lang.replace("_", "-");
     .lang-item {
         display: flex;
         gap: 0.5rem;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
     }
 
     .lang-item strong {
@@ -584,11 +608,12 @@ const siteLang = siteConfig.lang.replace("_", "-");
         body {
             background: white !important;
             color: black !important;
-            font-size: 11pt;
+            font-size: 10pt;
+            line-height: 1.3;
         }
 
         @page {
-            margin: 1.5cm;
+            margin: 1cm;
             size: letter;
         }
 
@@ -599,17 +624,18 @@ const siteLang = siteConfig.lang.replace("_", "-");
             box-shadow: none;
         }
 
-        section {
-            break-inside: avoid;
-        }
-
         .timeline-entry {
             break-inside: avoid;
         }
 
+        .cv-avatar {
+            width: 70px;
+            height: 70px;
+        }
+
         .cv-header {
-            padding-bottom: 0.75rem;
-            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.4rem;
         }
 
         a {
@@ -647,17 +673,3 @@ const siteLang = siteConfig.lang.replace("_", "-");
     }
 </style>
 
-<script is:inline>
-document.getElementById('download-pdf-btn').addEventListener('click', function() {
-    var element = document.querySelector('.cv-container');
-    var opt = {
-        margin: [10, 10, 10, 10],
-        filename: 'Gerardo_Flores_CV.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
-    html2pdf().set(opt).from(element).save();
-});
-</script>
