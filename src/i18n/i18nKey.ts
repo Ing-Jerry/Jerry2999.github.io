@@ -9,13 +9,10 @@ enum I18nKey {
     search = "search",
 
     // 文章
-    tags = "tags",
-    categories = "categories",
     series = "series",
     posts = "posts",
     recentPosts = "recentPosts",
     postList = "postList",
-    statistics = "statistics",
     tableOfContents = "tableOfContents",
 
     // 统计
@@ -32,7 +29,6 @@ enum I18nKey {
 
     untitled = "untitled",
     uncategorized = "uncategorized",
-    noTags = "noTags",
 
     wordCount = "wordCount",
     wordsCount = "wordsCount",

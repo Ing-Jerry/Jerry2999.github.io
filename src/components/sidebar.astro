@@ -4,9 +4,6 @@ import type { MarkdownHeading } from "astro";
 import { widgetManager } from "@utils/widget";
 import Profile from "@components/sidebar/profile.astro";
 import Announcement from "@components/sidebar/announcement.astro";
-import Categories from "@components/sidebar/categories.astro";
-import Tags from "@components/sidebar/tags.astro";
-import Statistics from "@components/sidebar/statistics.astro";
 import TOC from "@components/sidebar/toc.astro";
 
 
@@ -52,9 +49,6 @@ const stickyComponents = allStickyComponents.reduce((acc: any[], component) => {
 const componentMap = {
     profile: Profile,
     announcement: Announcement,
-    categories: Categories,
-    tags: Tags,
-    statistics: Statistics,
     toc: TOC,
 };
 

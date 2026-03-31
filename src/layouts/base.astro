@@ -1,7 +1,5 @@
 ---
-import "katex/dist/katex.css";
-
-import { siteConfig, profileConfig, umamiConfig, musicPlayerConfig, pioConfig } from "@/config";
+import { siteConfig, profileConfig, umamiConfig } from "@/config";
 import type { Favicon } from "@/types/config";
 import { defaultFavicons } from "@constants/icon";
 import {
@@ -18,11 +16,8 @@ import { pathsEqual, url } from "@utils/url";
 import FontLoader from "@components/fontLoader.astro";
 import LoadingOverlay from "@components/loadingOverlay.astro";
 import ConfigCarrier from "@components/configCarrier.astro";
-import MusicPlayer from "@components/musicPlayer.svelte";
-import Pio from "@components/pio.svelte";
 import "@styles/navbar.css";
 import "@styles/banner.css";
-import "@styles/fancybox.css";
 
 
 interface Props {
@@ -30,11 +25,9 @@ interface Props {
     banner?: string;
     description?: string;
     lang?: string;
-    setOGTypeArticle?: boolean;
-    postSlug?: string;
 }
 
-let { title, banner, description, lang, setOGTypeArticle, postSlug } = Astro.props;
+let { title, banner, description, lang } = Astro.props;
 
 // apply a class to the body element to decide the height of the banner, only used for initial page load
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
@@ -93,11 +86,6 @@ if (title) {
         : siteConfig.title;
 }
 
-let ogImageUrl: string | undefined;
-if (siteConfig.generateOgImages && postSlug) {
-    ogImageUrl = new URL(`/og/${postSlug}.png`, Astro.site).toString();
-}
-
 const favicons: Favicon[] =
     siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons;
 
@@ -145,14 +133,7 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         <meta property="og:url" content={Astro.url}>
         <meta property="og:title" content={pageTitle}>
         <meta property="og:description" content={description || pageTitle}>
-        {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        {
-            setOGTypeArticle ? (
-                <meta property="og:type" content="article" />
-            ) : (
-                <meta property="og:type" content="website" />
-            )
-        }
+        <meta property="og:type" content="website" />
         <!-- Twitter -->
         <meta name="twitter:card" content="summary_large_image">
         <meta property="twitter:url" content={Astro.url}>
@@ -212,10 +193,6 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         }}></style>
         <!-- custom head -->
         <slot name="head"></slot>
-        <!-- Pio 看板娘样式 - 仅在启用时加载 -->
-        {pioConfig.enable && <link rel="stylesheet" href="/pio/static/pio.css" />}
-        <!-- rss feed -->
-        <link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
         <!-- Umami Analytics -->
         {umamiEnabled && umamiScripts && <Fragment set:html={umamiScripts} />}
     </head>
@@ -230,10 +207,6 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         {shouldShowTopHighlight && <div class="top-gradient-highlight"></div>}
         <!-- 页面内容 -->
         <slot />
-        <!-- Music Player - 仅在启用时加载 -->
-        {musicPlayerConfig.enable && <MusicPlayer client:idle />}
-        <!-- Pio 看板娘组件 - 如果启用了侧边栏，可能需要调整 z-index -->
-        {pioConfig.enable && <Pio client:idle />}
         <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
         <div id="page-height-extend" class="hidden h-[300vh]"></div>
     </body>
@@ -285,7 +258,6 @@ import { initWallpaperMode } from "@utils/wallpaper";
 import { initTheme } from "@utils/theme";
 import { initHue } from "@utils/hue";
 import { initMarkdownActions } from "@/utils/markdown";
-import { initFancybox, cleanupFancybox } from "@utils/fancybox";
 import { loadAndInitTranslate } from "@utils/language";
 import { setupParticleEffects } from "@/utils/particle";
 
@@ -403,27 +375,7 @@ const setup = () => {
             top: 0,
             behavior: 'smooth'
         });
-        // Check if the current page is a post page, if so, trigger a custom event to initialize the comment system
-        setTimeout(() => {
-            if (document.getElementById('tcomment')) {
-                const pageLoadedEvent = new CustomEvent('twilight:page:loaded', {
-                    detail: {
-                        path: window.location.pathname,
-                        timestamp: Date.now()
-                    }
-                });
-                document.dispatchEvent(pageLoadedEvent);
-            }
-        }, 300);
-        // Initialize Fancybox
-        initFancybox();
     });
-    initFancybox();
-    window.swup.hooks.on("content:replace", () => {
-            cleanupFancybox();
-        },
-        { before: true },
-    )
 }
 if (window?.swup?.hooks) {
     setup()
@@ -505,21 +457,17 @@ if (typeof window !== 'undefined') {
     const onPageLoaded = () => {
         const overlay = document.getElementById('loading-overlay');
         const enableBanner = document.body.classList.contains('enable-banner');
-        // 触发 LoadingOverlay 淡出
+        // Trigger overlay fade-out
         if (overlay) {
             overlay.classList.add('fade-out');
         }
-        // 等待 LoadingOverlay 淡出（600ms）
+        // After overlay fade (600ms), start banner restoration
         setTimeout(() => {
-            if (overlay) {
-                overlay.style.display = 'none';
-            }
             if (enableBanner) {
-                // banner 开始恢复过渡：添加 banner-restoring 类（解除 CSS 中的 height: 0）
                 document.documentElement.classList.add('banner-restoring');
-                // 等待 banner 恢复过渡完成（600ms）
+                // Wait for banner growth (600ms), THEN hide overlay and show content
                 setTimeout(() => {
-                    // 触发各容器淡入动画
+                    if (overlay) overlay.style.display = 'none';
                     document.documentElement.classList.remove('is-loading');
                     document.documentElement.classList.add('show-initial-animation');
                     setTimeout(() => {
@@ -528,7 +476,7 @@ if (typeof window !== 'undefined') {
                     }, 1200);
                 }, 600);
             } else {
-                // 非 banner 模式，直接触发淡入
+                if (overlay) overlay.style.display = 'none';
                 document.documentElement.classList.remove('is-loading');
                 document.documentElement.classList.add('show-initial-animation');
                 setTimeout(() => {

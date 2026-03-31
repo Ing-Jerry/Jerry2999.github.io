@@ -10,12 +10,6 @@ export const LinkPresets: { [key in LinkPreset]: NavbarLink } = {
         icon: "material-symbols:home",
         description: "Twilight - A simple, clean, and beautiful blog theme.",
     },
-    [LinkPreset.Archive]: {
-        name: i18n(I18nKey.archive),
-        url: "/archive/",
-        icon: "material-symbols:archive",
-        description: "A chronological list of all published posts.",
-    },
     [LinkPreset.Projects]: {
         name: i18n(I18nKey.projects),
         url: "/projects/",
@@ -33,30 +27,6 @@ export const LinkPresets: { [key in LinkPreset]: NavbarLink } = {
         url: "/timeline/",
         icon: "material-symbols:timeline",
         description: i18n(I18nKey.timelineSubtitle),
-    },
-    [LinkPreset.Diary]: {
-        name: i18n(I18nKey.diary),
-        url: "/diary/",
-        icon: "material-symbols:book",
-        description: i18n(I18nKey.diarySubtitle),
-    },
-    [LinkPreset.Albums]: {
-        name: i18n(I18nKey.albums),
-        url: "/albums/",
-        icon: "material-symbols:photo-library",
-        description: i18n(I18nKey.albumsSubtitle),
-    },
-    [LinkPreset.Anime]: {
-        name: i18n(I18nKey.anime),
-        url: "/anime/",
-        icon: "material-symbols:movie",
-        description: "A list of anime I have watched.",
-    },
-    [LinkPreset.Friends]: {
-        name: i18n(I18nKey.friends),
-        url: "/friends/",
-        icon: "material-symbols:group",
-        description: "A curated list of friend sites.",
     },
     [LinkPreset.About]: {
         name: i18n(I18nKey.about),

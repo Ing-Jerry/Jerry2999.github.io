@@ -79,22 +79,18 @@ umami:
 
 navbar:
     links:
-        - name: "Proyectos"
-          url: "/#proyectos"
-          icon: "material-symbols:work-outline"
-          description: "Proyectos en la misma página"
         - name: "Skills"
           url: "/#skills"
           icon: "material-symbols:psychology-outline"
           description: "Habilidades técnicas"
-        - name: "Timeline"
-          url: "/#timeline"
-          icon: "material-symbols:timeline"
-          description: "Experiencia y educación"
         - name: "Sobre mí"
           url: "/#sobre-mi"
           icon: "material-symbols:person-outline"
           description: "Perfil y resumen"
+        - name: "CV"
+          url: "/#cv"
+          icon: "material-symbols:description-outline"
+          description: "Currículum vitae"
 
 sidebar:
     components:

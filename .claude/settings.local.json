@@ -20,7 +20,29 @@
       "Bash(cd \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\" && pnpm build 2>&1 | tail -15)",
       "Bash(cd \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\" && pnpm dev)",
       "Bash(cat .github/workflows/*.yml 2>/dev/null | head -30)",
-      "Bash(pnpm remove:*)"
+      "Bash(pnpm remove:*)",
+      "Bash(grep -r \"import\\\\|export\" /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/src/pages/*.astro | head -100)",
+      "Bash(grep -r \"import.*sanitize-html\" \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\\\\src\" 2>/dev/null | wc -l)",
+      "Bash(for file:*)",
+      "Bash(grep -r \"categories\\\\|tags\\\\|statistics\\\\|toc\\\\|widget\" /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/src/pages/*.astro | head -30)",
+      "Bash(for page:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $page imports ===\")",
+      "Read(//c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/src/pages/**)",
+      "Bash(done)",
+      "Bash(cd /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io\n\necho \"=== SITE CONFIG LANGUAGE ===\"\ngrep \"lang:\" twilight.config.yaml\n\necho \"\"\necho \"=== TRANSLATION ENABLE ===\"\ngrep -A 2 \"translate:\" twilight.config.yaml\n\necho \"\"\necho \"=== I18N FILES AVAILABLE ===\"\nls -la src/i18n/languages/)",
+      "Bash(cd \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\" && rm -rf dist && pnpm build 2>&1)",
+      "Bash(ls \"C:/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/public/assets/cv/\" 2>/dev/null; echo \"EXIT: $?\")",
+      "Bash(rmdir \"C:/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/public/assets/cv\" 2>/dev/null; echo \"Done: $?\")",
+      "Bash(cd \"C:/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io\" && rm -rf dist && pnpm build 2>&1 | tail -30)",
+      "Bash(find . -type f \\\\\\( -name \"*.astro\" -o -name \"*.ts\" -o -name \"*.js\" \\\\\\) ! -path \"./node_modules/*\" ! -path \"./.git/*\" ! -path \"./dist/*\" 2>/dev/null | wc -l)",
+      "Bash(cd \"C:/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io\" && rm -rf dist && pnpm build 2>&1 | tail -15)",
+      "Bash(cd \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\" && rm -rf dist && pnpm build 2>&1 | tail -20)",
+      "Bash(find /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/public/assets/images -name \"*Wallpaper*\" -o -name \"*wallpaper*\" 2>/dev/null | head -20)",
+      "Bash(grep -r \"page-bg\\\\|pageBackground\\\\|--page-bg\" /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io/src --include=\"*.ts\" --include=\"*.js\" --include=\"*.css\" 2>/dev/null | head -20)",
+      "Bash(ls -la \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\\\\public\\\\assets\\\\images\\\\desktopWallpaper\"* \"C:\\\\Users\\\\invit\\\\OneDrive\\\\Documentos\\\\CosasJerry\\\\Jerry2999.github.io\\\\public\\\\assets\\\\images\\\\mobileWallpaper\"* 2>/dev/null)",
+      "Bash(find /c/Users/invit/OneDrive/Documentos/CosasJerry/Jerry2999.github.io -type f -name \"*.js\" -o -name \"*.ts\" | xargs grep -l \"window.print\\\\|html2pdf\\\\|pdfjs\" 2>/dev/null | head -20)",
+      "Bash(pnpm build:*)"
     ]
   }
 }
